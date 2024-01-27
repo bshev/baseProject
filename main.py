@@ -4,16 +4,22 @@ __version__ = "0.0.0"
 __status__ = "Development"
 __date__ = "2024/01/24"
 
-import pandas as pd
-
-def print_hi(name):
-    test = pd.DataFrame()
-    print(test.info())
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+import requests
+from loguru import logger
 
 
+def main():
+
+    URL = "https://www.google.com"
+    response = requests.get(URL)
+
+    status = response.status_code
+    headers = response.headers
+
+    logger.info(f"Response status: {status}")  # Press ⌘F8 to toggle the breakpoint.
+    logger.debug(f" Date: {headers.get('Date')}")
+    return response
+
+
+if __name__ == "__main__":
+    main()
